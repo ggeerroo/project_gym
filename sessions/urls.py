@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.views.generic.list import ListView
-from sessions.views import RoutineList
+from sessions.views import RoutineList, RoutineDetail
 
 
 app_name = 'sessions'
