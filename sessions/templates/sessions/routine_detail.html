@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Routines{% endblock %}
+
+{% block content %}
+
+<ul><h1>{{ routine.name }}</h1></ul>
+{% for exercise in routine.exercises.all  %}
+    <li><a href="">{{ exercise.name }}</a></li>
+{% endfor %}
+
+created at: {{ routine.created_at|date }}
+last update: {{ routine.updated_at|date }}
+
+{% endblock content %}
