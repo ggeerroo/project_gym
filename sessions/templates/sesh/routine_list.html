@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Routines{% endblock %}
+
+{% block content %}
+<h1>Routines</h1>
+<ul>
+{% for routine in object_list %}
+    <li> <a href="{% url 'sessions:routine_detail' routine.id  %}">{{ routine.name }}</a> - {{ routine.created_at|date }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+{% endblock content %}

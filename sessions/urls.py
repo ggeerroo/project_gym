@@ -6,7 +6,7 @@ from sessions.views import RoutineList, RoutineDetail
 app_name = 'sessions'
 
 urlpatterns = [
-    path('routines/', RoutineList.as_view(), name='routines'),
-    path('routines/<int:pk>/', RoutineDetail.as_view(), name='routines_detail'),
+    path('all_routines/', RoutineList.as_view(), name='routines'),
+    path('routine/<int:pk>/', RoutineDetail.as_view(), name='routines_detail'),
 
 ]
