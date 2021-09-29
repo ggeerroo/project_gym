@@ -20,6 +20,8 @@ class RoutineDetail(DetailView):
     model = Routine
 
 
+class ExerciseDetail(DetailView):
+    model = Exercise
 
 """ 
 class RoutineCreate(CreateView):
@@ -37,8 +39,7 @@ class RoutineDelete(DeleteView):
 
 
 
-class ExerciseDetail(DetailView):
-    #todo
+
 
 
  """
