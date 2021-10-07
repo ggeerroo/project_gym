@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'sessions/css/stopwatch.css' %}"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+
+{% endblock head %}
+
+{% block title %}Session{% endblock %}
+
+{% block content %}
+
+<h1>Session {{ session.id }}</h1>
+<h5>Created on {{ session.date }}</h5>
+<ul><h4>Routine: <strong>{{ session.routine }}</strong></h4></ul>
+{% for exercise in session.routine.exercises.all  %}
+    <li><a href="{% url 'sessions:exercise_detail' exercise.id %}">{{ exercise.name }}</a></li>
+{% endfor %}
+
+{% if session.duration %}
+    <p>Duration: {{ session.duration }}</p>
+{% else %}
+    <div class="stopwatch">
+      <h1><span class="gold">GOLD</span> STOPWATCH</h1>
+      <div class="circle">
+        <span class="time" id="display">00:00:00</span>
+      </div>
+
+      <div class="controls">
+        <button class="buttonPlay">
+          <img id="playButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg" />
+
+          <img id="pauseButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg" />
+        </button>
+
+        <button class="buttonReset">
+          <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg" />
+        </button>
+        
+        <form method="post" action="{% url 'sessions:session_detail' session.id %}">
+        {% csrf_token %}
+            <input type="hidden" id="duration" name="duration" value="">
+            <input type="submit" value="Finish session.">
+        </form>
+     
+      </div>
+    </div>
+    <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
+
+    <button>Start Session</button>
+{% endif %}
+
+
+
+{% endblock content %}

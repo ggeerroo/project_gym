@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django.conf import settings
 from datetime import timedelta
+from django.urls import reverse
 
 
 
@@ -50,9 +51,16 @@ class Session(models.Model):
     routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     
-    # I need to enter a timedelta type for the duration (finishing_time - starting_time)
-    duration = models.DurationField()
-
-
+    """  start_time = models.DateTimeField(auto_now_add=True)
+    finish_time = models.DateTimeField(auto_now_add=True) """
+    duration = models.DurationField(null=True)
+    
+    def get_absolute_url(self):
+        return reverse('sessions:session_detail', kwargs={'pk': self.pk})
+   
     def __str__(self):
-        return "Session of " + self.date 
+        return "Session of " + str(self.date)
+
+
+
+

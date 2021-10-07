@@ -1,13 +1,17 @@
 from django.urls import path, include
 from django.views.generic.list import ListView
-from sessions.views import RoutineList, RoutineDetail, ExerciseDetail
+from sessions.views import RoutineList, RoutineDetail, ExerciseDetail, SessionCreate, SessionDetail
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 app_name = 'sessions'
 
 urlpatterns = [
-    path('all_routines/', RoutineList.as_view(), name='routines'),
+    path('all_routines/', RoutineList.as_view(), name='routine_list'),
     path('routine/<int:pk>/', RoutineDetail.as_view(), name='routine_detail'),
     path('exercise/<int:pk>/', ExerciseDetail.as_view(), name='exercise_detail'),
-
-]
+    path('new/', SessionCreate.as_view(), name='session_create'),
+    path('detail/<int:pk>', SessionDetail.as_view(), name='session_detail'),
+    
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

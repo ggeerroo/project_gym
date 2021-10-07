@@ -1,4 +1,4 @@
-"""xlog URL Configuration
+"""project_gym URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -19,6 +19,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home/main.html')),
+    path('', TemplateView.as_view(template_name='home/main.html'), name='home'),
     path('sessions/', include('sessions.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
