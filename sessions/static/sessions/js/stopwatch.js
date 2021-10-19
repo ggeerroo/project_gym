@@ -60,7 +60,7 @@ function timeToString(time) {
   }
   
   // Create function to display buttons
-  
+
   function showButton(buttonKey) {
     const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
     const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;

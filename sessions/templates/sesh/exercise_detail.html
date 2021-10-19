@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Routines{% endblock %}
+{% block title %}Exercise{% endblock %}
 
 {% block content %}
 
@@ -10,10 +10,14 @@
         <li>Reps: {{ exercise.repetitions }}</li>
         <li>Weight: {{ exercise.weight }} kg</li>
     </ul>
+    <p>Notes: {{ exercise.notes }}</p>
 </div>
 
-created at: {{ routine.created_at|date }}
+created at: {{ exercise.created_at|date }}
 <br>
-last update: {{ routine.updated_at|date }}
+last update: {{ exercise.updated_at|date }}
+<br>
+<p>{{ exercise.id }}</p>
+<button><a href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a></button>
 
 {% endblock content %}

@@ -4,7 +4,7 @@ from sessions.models import Routine, Exercise, Session
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 
@@ -46,19 +46,26 @@ class RoutineDetail(LoginRequiredMixin, DetailView):
     model = Routine
 
 
+class RoutineUpdate(LoginRequiredMixin, UpdateView):
+    model = Routine
+    fields = ['name', 'exercises']    
+
+
 class ExerciseDetail(LoginRequiredMixin,DetailView):
+    model = Exercise      
+
+
+class ExerciseUpdate(LoginRequiredMixin, UpdateView):
     model = Exercise
+    fields = ['sets', 'repetitions', 'weight', 'notes']
 
-
-
-class SessionExerciseUpdate(LoginRequiredMixin, UpdateView):
-
-
-    def post(self, request, *args, **kwargs):
-        new_exercise = Exercise(
-            
-
-        )
+    #   Create a clone of the exercise so we can keep a record of the progress
+    def form_valid(self, form):
+        exercise = self.get_object()
+        exercise_clone = exercise.make_clone()
+        exercise_clone.updated_at = datetime.now()
+        exercise_clone.save()
+        return super().form_valid(form) 
 
 
 """ 
@@ -67,8 +74,7 @@ class RoutineCreate(CreateView):
 
 
 
-class RoutineUpdate(UpdateView):
-    #todo
+
 
 
 

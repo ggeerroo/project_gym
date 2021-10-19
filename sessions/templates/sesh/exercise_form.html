@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}Exercise{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'sessions:exercise_update' exercise.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+
+{% endblock content %}

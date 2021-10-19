@@ -38,6 +38,7 @@
 
         <button class="buttonReset">
           <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg" />
+          
         </button>
         
         <form method="post" action="{% url 'sessions:session_detail' session.id %}">
@@ -45,12 +46,12 @@
             <input type="hidden" id="duration" name="duration" value="">
             <input type="submit" value="Finish session.">
         </form>
-     
+        <button>Start Session</button>
       </div>
     </div>
     <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
 
-    <button>Start Session</button>
+   
 {% endif %}
 
 
