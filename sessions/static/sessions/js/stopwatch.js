@@ -34,7 +34,7 @@ function timeToString(time) {
     document.getElementById("display").innerHTML = txt;
   }
   
-  // Create "start", "pause" and "reset" functions
+  // Create "start" and  finish" functions
   
   function start() {
     startTime = Date.now() - elapsedTime;
@@ -42,38 +42,42 @@ function timeToString(time) {
       elapsedTime = Date.now() - startTime;
       print(timeToString(elapsedTime));
     }, 10);
-    showButton("PAUSE");
+    showButton("FINISH");
   }
   
-  function pause() {
-    clearInterval(timerInterval);
-    showButton("PLAY");
+  function finish() {
+    // Check if session is shorter than 15 minutes
+    if ((elapsedTime / 1000) < 15) {
+      if (confirm("Session too short. Are sure you want to finish? The session won't be saved.")) {
+        // GO TO MAIN PAGE
+        window.location = document.getElementById("href").getAttribute("href");
+      }
+    }else if (confirm("Are you sure you want to finish this session?")) {
+      clearInterval(timerInterval);
+      // We insert duration value into form to POST to our view for processing 
+      document.getElementById("duration").value = elapsedTime;
+      document.getElementById("sendForm").click()
+      /* print("00:00:00");
+      elapsedTime = 0; */
+      //showButton("START");
+    } 
   }
-  
-  function reset() {
-    clearInterval(timerInterval);
-    // We insert duration value into form to POST to our view for processing 
-    document.getElementById("duration").value = elapsedTime;
-    print("00:00:00");
-    elapsedTime = 0;
-    showButton("PLAY");
-  }
-  
+
   // Create function to display buttons
 
   function showButton(buttonKey) {
-    const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
-    const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;
+    const buttonToShow = buttonKey === "START" ? startButton : finishButton;
+    const buttonToHide = buttonKey === "START" ? finishButton : startButton;
     buttonToShow.style.display = "block";
     buttonToHide.style.display = "none";
   }
+  
   // Create event listeners
+  let startButton = document.getElementById("startButton");
+  let finishButton = document.getElementById("finishButton");
+  //let finishButton = document.getElementById( finishButton");
   
-  let playButton = document.getElementById("playButton");
-  let pauseButton = document.getElementById("pauseButton");
-  let resetButton = document.getElementById("resetButton");
-  
-  playButton.addEventListener("click", start);
-  pauseButton.addEventListener("click", pause);
-  resetButton.addEventListener("click", reset);
+  startButton.addEventListener("click", start);
+  finishButton.addEventListener("click", finish);  // When click on finishButton, we get first a verification popup
+  /* finishButton.addEventListener("click", finish); */
   

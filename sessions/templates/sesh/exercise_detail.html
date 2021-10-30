@@ -20,4 +20,6 @@ last update: {{ exercise.updated_at|date }}
 <p>{{ exercise.id }}</p>
 <button><a href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a></button>
 
+<a href="/">HOME</a>
+
 {% endblock content %}

@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load static %}
+
 
 {% block head %}
 
@@ -24,36 +24,30 @@
     <p>Duration: {{ session.duration }}</p>
 {% else %}
     <div class="stopwatch">
-      <h1><span class="gold">GOLD</span> STOPWATCH</h1>
+      {% comment %} <h1><span class="gold">GOLD</span> STOPWATCH</h1> {% endcomment %}
       <div class="circle">
         <span class="time" id="display">00:00:00</span>
       </div>
 
       <div class="controls">
-        <button class="buttonPlay">
-          <img id="playButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg" />
-
-          <img id="pauseButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg" />
-        </button>
-
-        <button class="buttonReset">
-          <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg" />
-          
-        </button>
+        
+        <button id="startButton">Start Session</button>
+        <button id="finishButton" style="display:none">Finish Session</button>
         
         <form method="post" action="{% url 'sessions:session_detail' session.id %}">
         {% csrf_token %}
             <input type="hidden" id="duration" name="duration" value="">
-            <input type="submit" value="Finish session.">
+            <input type="submit" id="sendForm" value="sendForm" style="display:none">
         </form>
-        <button>Start Session</button>
+        
       </div>
     </div>
     <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
-
+    {% comment %} This is just to redirect using the js {% endcomment %}
+    <a id="href" style="display:none" href="/"></a>
    
 {% endif %}
-
+<a href="/">HOME</a>
 
 
 {% endblock content %}

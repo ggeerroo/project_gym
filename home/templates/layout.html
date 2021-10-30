@@ -7,13 +7,33 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% load static %}
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<!-- Reference https://www.w3schools.com/howto/howto_js_topnav_responsive.asp -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- My CSS -->
+<link rel="stylesheet" href="{% static 'sessions/css/styles.css' %}">
  <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 
 <body>   
+<div class="topnav" id="myTopnav">
+  <a href="#">Home</a>
+  <a href="#">Routines</a>
+  <a href="#">Sessions</a>
+  <a href="#">Exercises</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
 <div>{% block content %}{% endblock %}</div>
+
+<!-- My JS -->
+<script src="{% static 'sessions/js/navigation.js' %}"></script>
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
