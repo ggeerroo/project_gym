@@ -35,6 +35,8 @@ class Routine(models.Model):
     )
 
     exercises = models.ManyToManyField(Exercise)
+    
+    last_workout = models.DateTimeField(null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

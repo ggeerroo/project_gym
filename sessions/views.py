@@ -27,7 +27,7 @@ class SessionCreate(LoginRequiredMixin, CreateView):
 class SessionDetail(LoginRequiredMixin, DetailView):
     model = Session
 
-    # Save the duration of the session in the db
+    # Save the duration of the session and last workout for the routine in the db 
     def post(self, request, *args, **kwargs):
         session = self.get_object()      
         #   Get the string duration from the POST request, turn it into an int, 
@@ -35,6 +35,12 @@ class SessionDetail(LoginRequiredMixin, DetailView):
         seconds = int(request.POST['duration']) / 1000
         session.duration = timedelta(seconds = int(seconds)) 
         session.save()
+
+        # Save date of last workout using this routine
+        routine = Routine.objects.get(name=session.routine)
+        routine.last_workout = datetime.now()
+        routine.save()
+
         return HttpResponseRedirect(reverse_lazy('sessions:session_detail', args=[session.id]))
 
 

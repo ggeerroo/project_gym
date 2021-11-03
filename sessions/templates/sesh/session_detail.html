@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+{% load static %}
 
 {% block head %}
 
@@ -14,11 +15,13 @@
 {% block content %}
 
 <h1>Session {{ session.id }}</h1>
-<h5>Created on {{ session.date }}</h5>
+
 <ul><h4>Routine: <strong>{{ session.routine }}</strong></h4></ul>
 {% for exercise in session.routine.exercises.all  %}
     <li><a href="{% url 'sessions:exercise_detail' exercise.id %}">{{ exercise.name }}</a></li>
 {% endfor %}
+
+<h5>Created on {{ session.date }}</h5>
 
 {% if session.duration %}
     <p>Duration: {{ session.duration }}</p>
@@ -42,12 +45,12 @@
         
       </div>
     </div>
+    
     <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
     {% comment %} This is just to redirect using the js {% endcomment %}
     <a id="href" style="display:none" href="/"></a>
    
 {% endif %}
-<a href="/">HOME</a>
 
 
 {% endblock content %}

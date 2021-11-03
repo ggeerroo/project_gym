@@ -3,10 +3,19 @@
 
 {% block content %}
 
-<ul><h1>{{ routine.name }}</h1></ul>
-{% for exercise in routine.exercises.all  %}
-    <li><a href="{% url 'sessions:exercise_detail' exercise.id %}">{{ exercise.name }} </a></li>
-{% endfor %}
+<h1>{{ routine.name }}</h1>
+<div class="list-group">
+    {% for exercise in routine.exercises.all  %}
+            <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ exercise.name }}</h5>
+                    <small>Last update: {{ exercise.updated_at|timesince }}</small>
+                </div>
+            </a>
+    {% empty %}
+        No exercises yet.
+    {% endfor %}
+</div> 
 
 created at: {{ routine.created_at|date }}
 <br>
