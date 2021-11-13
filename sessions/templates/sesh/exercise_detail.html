@@ -13,9 +13,8 @@
     <p>Notes: {{ exercise.notes }}</p>
 </div>
 
-created at: {{ exercise.created_at|date }}
-<br>
-last update: {{ exercise.updated_at|date }}
+<h6>Last update: {{ exercise.updated_at|timesince }} ago</h6>
+
 <br>
 
 <button><a href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a></button>

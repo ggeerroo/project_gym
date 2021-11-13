@@ -14,25 +14,33 @@
 
 {% block content %}
 
-<h1>Session {{ session.id }}</h1>
+<div class="myheader">
+  <h1>Session {{ session.id }}</h1>
+</div>
 
-<ul><h4>Routine: <strong>{{ session.routine }}</strong></h4></ul>
-{% for exercise in session.routine.exercises.all  %}
-    <li><a href="{% url 'sessions:exercise_detail' exercise.id %}">{{ exercise.name }}</a></li>
-{% endfor %}
+<h1>{{ routine.name }}</h1>
+<div class="list-group">
+    {% for exercise in session.routine.exercises.all  %}
+            <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 style="font-size:15px;" class="mb-1">{{ exercise.name }}</h5>
+                </div>
+            </a>
+    {% empty %}
+        No exercises yet.
+    {% endfor %}
+</div> 
 
-<h5>Created on {{ session.date }}</h5>
+{% comment %} <small>{{ session.date }}</small> {% endcomment %}
 
 {% if session.duration %}
     <p>Duration: {{ session.duration }}</p>
 {% else %}
     <div class="stopwatch">
-      {% comment %} <h1><span class="gold">GOLD</span> STOPWATCH</h1> {% endcomment %}
-      <div class="circle">
-        <span class="time" id="display">00:00:00</span>
-      </div>
+     
+      <span class="time" id="display">00:00:00</span>
 
-      <div class="controls">
+      <div class="d-flex justify-content-center">
         
         <button id="startButton">Start Session</button>
         <button id="finishButton" style="display:none">Finish Session</button>

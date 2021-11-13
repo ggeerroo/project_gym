@@ -16,6 +16,7 @@ class Exercise(CloneMixin, models.Model):
     repetitions = models.PositiveSmallIntegerField(default=1)
     weight = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     notes = models.TextField(blank=True)
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
