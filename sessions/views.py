@@ -59,6 +59,13 @@ class RoutineUpdate(LoginRequiredMixin, UpdateView):
 
 class ExerciseDetail(LoginRequiredMixin,DetailView):
     model = Exercise      
+    # Get session.id from context BUT ONLY WHEN A SESSION IS RUNNING!
+    """ def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        exercise = self.get_object()
+        session = exercise.routine.session_set.last()
+        context['session_id'] = session.id
+        return context """
 
 
 class ExerciseUpdate(LoginRequiredMixin, UpdateView):

@@ -3,6 +3,8 @@
 
 {% block content %}
 
+{% load static%}
+
 <ul><h1>{{ exercise.name }}</h1></ul>
 <div>
     <ul>
@@ -18,6 +20,9 @@
 <br>
 
 <button><a href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a></button>
+<button><a id="current_session" style="display:none" href="">Back to Session</a></button>
+
+<script src="{% static 'sessions/js/exercise_detail.js' %}"></script>
 
 
 {% endblock content %}

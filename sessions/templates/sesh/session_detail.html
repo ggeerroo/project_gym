@@ -57,6 +57,7 @@
     <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
     {% comment %} This is just to redirect using the js {% endcomment %}
     <a id="href" style="display:none" href="/"></a>
+    <p id="sessionID" style="display:none">{{ session.id }}</p>
    
 {% endif %}
 
