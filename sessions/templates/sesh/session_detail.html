@@ -5,6 +5,7 @@
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'sessions/css/stopwatch.css' %}"/>
+<link rel="stylesheet" href="{% static 'sessions/css/styles.css' %}"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
 
@@ -18,7 +19,16 @@
   <h1>Session {{ session.id }}</h1>
 </div>
 
-<h1>{{ routine.name }}</h1>
+
+<div class="d-flex justify-content-between">
+   <h1 class="my_tooltip">
+        {{ session.routine.name }}
+        <span class="my_tooltiptext">Last workout: {{ session.routine.last_workout|timesince }} ago </span>
+    </h1>
+    <small>{{ session.date }}</small> 
+</div> 
+
+
 <div class="list-group">
     {% for exercise in session.routine.exercises.all  %}
             <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -31,7 +41,7 @@
     {% endfor %}
 </div> 
 
-{% comment %} <small>{{ session.date }}</small> {% endcomment %}
+
 
 {% if session.duration %}
     <p>Duration: {{ session.duration }}</p>

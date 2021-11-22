@@ -19,8 +19,15 @@ function timeToString(time) {
     let formattedMM = mm.toString().padStart(2, "0");
     let formattedSS = ss.toString().padStart(2, "0");
     let formattedMS = ms.toString().padStart(2, "0");
-  
-    return `${formattedHH}:${formattedMM}:${formattedSS}:${formattedMS}`;
+
+    var formated_time;
+    if (hh >= 1) {
+      formated_time = `${formattedHH}:${formattedMM}:${formattedSS}`;
+    }else{
+      formated_time = `${formattedMM}:${formattedSS}:${formattedMS}`;
+    } 
+
+    return formated_time;
   }
   
   // Declare variables to use in our functions below

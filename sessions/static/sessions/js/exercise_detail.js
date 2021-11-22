@@ -3,8 +3,7 @@ function check_session() {
     
     if (localStorage.getItem('current_session')) {
         document.getElementById("current_session").href = localStorage.getItem('current_session');
-        const my_button = document.getElementById("current_session");
-        my_button.style.display = "block";
+        document.getElementById("current_session_button").style.display = "block";
     }
 }
 

@@ -9,3 +9,11 @@ function myFunction() {
       x.className = "topnav";
     }
   } 
+
+function remove_newSession_button() {
+  if (localStorage.getItem('current_session')) {
+    document.getElementById('new_session_button').style.display = 'none'
+  }
+} 
+
+remove_newSession_button();

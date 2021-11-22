@@ -25,7 +25,7 @@
   <a href="/">Home</a>
   <a href="{% url 'sessions:routine_list' %}">Routines</a>
   {% comment %} <a href="#">Exercises</a> {% endcomment %}
-  <a href="{% url 'sessions:session_create' %}">NEW SESSION</a>
+  <a id="new_session_button" href="{% url 'sessions:session_create' %}">NEW SESSION</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
