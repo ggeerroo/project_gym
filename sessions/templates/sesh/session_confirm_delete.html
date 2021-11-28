@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+        <p>Are you sure you want to cancel this Session?</p>
+        <p><small>All information will be lost.</small></p>
+        <input id="cancelButton" type="submit" value="Yes, cancel.">
+        <a href="{% url 'sessions:session_detail' session.id %}">No, go back.</a>
+</form>
+ <script src="{% static 'sessions/js/cancel_session.js' %}"></script>
+
+{% endblock content %}

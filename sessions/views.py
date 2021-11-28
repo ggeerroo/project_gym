@@ -44,6 +44,13 @@ class SessionDetail(LoginRequiredMixin, DetailView):
         return HttpResponseRedirect(reverse_lazy('sessions:session_detail', args=[session.id]))
 
 
+
+class SessionDelete(LoginRequiredMixin, DeleteView):
+    model = Session
+    success_url = '/'
+
+
+
 class RoutineList(LoginRequiredMixin, ListView):
     model = Routine
 
