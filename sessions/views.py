@@ -11,7 +11,15 @@ from datetime import timedelta, datetime
 class SessionCreate(LoginRequiredMixin, CreateView):
     model = Session
     fields = ['routine']
-    
+    """ template = 'sesh/routine_select.html' """
+    template_name_suffix = '_create_form'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        context['routines'] = Routine.objects.all()
+        return context
+
     # This method is called when valid form data has been POSTed.
     # It should return an HttpResponse.
     def form_valid(self, form):  
@@ -26,6 +34,13 @@ class SessionCreate(LoginRequiredMixin, CreateView):
 
 class SessionDetail(LoginRequiredMixin, DetailView):
     model = Session
+
+
+    # We get the session's number, because it's not necessarily the same as its id (cancelled sessions, etc.)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['session_number'] = Session.objects.all().count()
+        return context
 
     # Save the duration of the session and last workout for the routine in the db 
     def post(self, request, *args, **kwargs):
@@ -66,18 +81,11 @@ class RoutineUpdate(LoginRequiredMixin, UpdateView):
 
 class ExerciseDetail(LoginRequiredMixin,DetailView):
     model = Exercise      
-    # Get session.id from context BUT ONLY WHEN A SESSION IS RUNNING!
-    """ def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        exercise = self.get_object()
-        session = exercise.routine.session_set.last()
-        context['session_id'] = session.id
-        return context """
-
+   
 
 class ExerciseUpdate(LoginRequiredMixin, UpdateView):
     model = Exercise
-    fields = ['sets', 'repetitions', 'weight', 'notes']
+    fields = ['sets', 'repetitions', 'weight']
 
     #   Create a clone of the exercise so we can keep a record of the progress
     def form_valid(self, form):
@@ -87,6 +95,15 @@ class ExerciseUpdate(LoginRequiredMixin, UpdateView):
         exercise_clone.save()
         return super().form_valid(form) 
 
+
+
+""" class NotesUpdate(LoginRequiredMixin, UpdateView):
+    def form_valid(self, form):
+        exercise = self.get_object()
+        exercise_clone = exercise.make_clone()
+        exercise_clone.updated_at = datetime.now()
+        exercise_clone.save()
+        return super().form_valid(form)  """
 
 """ 
 class RoutineCreate(CreateView):

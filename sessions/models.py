@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm, Textarea
 from model_clone import CloneMixin
 from django.core.validators import MinLengthValidator
 from django.conf import settings
@@ -26,6 +27,17 @@ class Exercise(CloneMixin, models.Model):
     # Shows up in the admin list
     def __str__(self):
         return self.name
+
+
+
+
+""" class NotesForm(ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ('notes')
+        widgets = {
+            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
+        } """
 
 
 
@@ -62,6 +74,8 @@ class Session(models.Model):
    
     def __str__(self):
         return "Session of " + str(self.date)
+
+
 
 
 

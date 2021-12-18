@@ -19,10 +19,7 @@
 
 <br>
 
-<button><a href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a></button>
-<button id="current_session_button" style="display:none" ><a id="current_session" href="">Back to Session</a></button>
-
-<script src="{% static 'sessions/js/exercise_detail.js' %}"></script>
+<a class="my_button left" href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a>
 
 
 {% endblock content %}

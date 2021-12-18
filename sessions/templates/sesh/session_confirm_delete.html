@@ -1,17 +1,30 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+<title>{% block title %}{% endblock %}</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'sessions/css/styles.css' %}">
 {% load static %}
 
-{% block title %}
-{% endblock title %}
-
-{% block content %}
-
-<form method="post">{% csrf_token %}
-        <p>Are you sure you want to cancel this Session?</p>
-        <p><small>All information will be lost.</small></p>
-        <input id="cancelButton" type="submit" value="Yes, cancel.">
-        <a href="{% url 'sessions:session_detail' session.id %}">No, go back.</a>
-</form>
- <script src="{% static 'sessions/js/cancel_session.js' %}"></script>
-
-{% endblock content %}
+<body>
+        <form method="post">{% csrf_token %}
+                <p>Are you sure you want to cancel this Session?</p>
+                <p><small>All information will be lost.</small></p>
+                {% comment %} <div class="container">
+                        <div class="row">
+                                <input class="col my_button" id="cancelButton" type="submit" value="Yes, cancel.">
+                                <a class="col my_button" href="{% url 'sessions:session_detail' session.id %}">No, go back.</a>
+                        </div>
+                </div> {% endcomment %}
+                <input class="my_button" id="cancelButton" type="submit" value="Yes, cancel.">
+                <a class="my_button" id="session_delete_go_back" href="{% url 'sessions:session_detail' session.id %}">No, go back.</a>
+        </form>
+<script src="{% static 'sessions/js/cancel_session.js' %}"></script>
+</body>
+</html>

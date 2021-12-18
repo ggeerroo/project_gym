@@ -9,7 +9,7 @@
             <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ exercise.name }}</h5>
-                    <small>Last update: {{ exercise.updated_at|timesince }}</small>
+                    {% comment %} <small>Last update: {{ exercise.updated_at|timesince }}</small> {% endcomment %}
                 </div>
             </a>
     {% empty %}

@@ -25,13 +25,15 @@
   <a href="/">Home</a>
   <a href="{% url 'sessions:routine_list' %}">Routines</a>
   {% comment %} <a href="#">Exercises</a> {% endcomment %}
-  <a id="new_session_button" href="{% url 'sessions:session_create' %}">NEW SESSION</a>
+  <a id="new_session" href="{% url 'sessions:session_create' %}" style="display:none;">NEW SESSION</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 
 <div>{% block content %}{% endblock %}</div>
+
+<a class="my_button right" style="display:none;" id="back_to_session" href="" >Back to Session</a>
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

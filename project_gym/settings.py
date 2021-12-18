@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # MY APPS
     'home',
     'sessions',
+    'welcome',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Internationalization

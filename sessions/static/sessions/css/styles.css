@@ -65,7 +65,6 @@
 .my_tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
 }
 
 .my_tooltip .my_tooltiptext {
@@ -107,4 +106,70 @@
 .myheader {
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+
+/* Buttons  */
+.my_button {
+  position: fixed;
+  z-index: 1000;
+  -webkit-backface-visibility: none;
+  background-color: #0069ff;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  opacity: 1;
+  padding: 11px 0 9px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: background .2s ease;
+  transition: background .2s ease;
+  width: 140px;
+}
+
+/* Session confirm delete, "No, go back" */
+#session_delete_go_back {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Session confirm delete, "Yes, cancel" */
+#cancelButton {
+  position: relative;
+}
+
+
+/* Navigation button, Go Back to Session */
+/* Button right */
+.right {
+  right: 20px;
+  bottom: 20px;
+}
+
+
+/* Navigation button, Update Exercise */
+/* Button left */
+.left {
+  left: 20px;
+  bottom: 20px;
+}
+
+.container {
+  padding-top: 50px;
+}
+
+/* Close icon. Reference: https://stackoverflow.com/a/47196589/12951673 */
+.close {
+  opacity: 0.5;
+  font-size: 150%;
+  padding-left: 10px;
+  text-decoration: none;
+}
+
+.close:hover {
+  opacity: 1.0;
 }

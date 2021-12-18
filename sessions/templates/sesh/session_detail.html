@@ -16,7 +16,7 @@
 {% block content %}
 
 <div class="myheader">
-  <h1>Session {{ session.id }}</h1>
+  <h1>Session {{ session_number }}</h1>
 </div>
 
 
@@ -50,12 +50,12 @@
      
       <span class="time" id="display">00:00:00</span>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-between">
         
         <button id="startButton">Start Session</button>
         <button id="finishButton" style="display:none">Finish Session</button>
-        <a href="{% url 'sessions:session_delete' session.id %}">Cancel Session</a>
-        {% comment %} <button id="cancelButton">Cancel Session</button> {% endcomment %}
+        {% comment %} <a href="{% url 'sessions:session_delete' session.id %}">Cancel Session</a> {% endcomment %}
+        <a href="{% url 'sessions:session_delete' session.id %}" class="close" aria-label="Close">&#10006;</a>
         
         <form method="post" action="{% url 'sessions:session_detail' session.id %}">
         {% csrf_token %}

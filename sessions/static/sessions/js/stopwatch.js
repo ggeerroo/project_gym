@@ -92,18 +92,9 @@ function timeToString(time) {
     buttonToShow.style.display = "block";
     buttonToHide.style.display = "none";
   }
-  
-  // Create event listeners
-  let startButton = document.getElementById("startButton");
-  let finishButton = document.getElementById("finishButton");
-  
-  
-  startButton.addEventListener("click", start);
-  finishButton.addEventListener("click", finish);  // When click on finishButton, we get first a verification popup
-    
 
-// Reference:https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
-// Checks if a Session is already running, sets the timer accordingly and saves the session URL if necessary
+  
+  // Checks if a Session is already running, sets the timer accordingly and saves the session URL if necessary
   function session_status() {
     // Check if there's and initial time already saved in the storage
     if (localStorage.getItem('initialTime')) {
@@ -118,13 +109,29 @@ function timeToString(time) {
       localStorage.setItem('current_session', window.location.href);
     }
   }
-  
 
-  if (document.readyState === 'loading') {  // Loading hasn't finished yet
+
+  // Create event listeners
+  let startButton = document.getElementById("startButton");
+  let finishButton = document.getElementById("finishButton");
+  
+  
+  startButton.addEventListener("click", start);
+  finishButton.addEventListener("click", finish);  // When click on finishButton, we get first a verification popup
+    
+
+// Reference:https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
+if (document.readyState === 'loading') {  // Loading hasn't finished yet
     document.addEventListener('DOMContentLoaded', session_status);
   } else {  // `DOMContentLoaded` has already fired
     session_status();
-  }
+}
 
 
 
+if (document.getElementById("back_to_session") !== null) {
+  document.getElementById("back_to_session").style.display = "none";
+}
+if (document.getElementById("new_session")) {
+  document.getElementById("new_session").style.display = "none";
+}

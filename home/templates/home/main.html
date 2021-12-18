@@ -6,7 +6,8 @@
 {% if user.is_authenticated %}
 {% else %}
     <a href="{% url 'login' %}">Log in</a>
-{% endif %}
+    <a href="{% url 'welcome:signup' %}">Sign up</a>
+{% endif %} 
 
 {% endblock content %} 
 

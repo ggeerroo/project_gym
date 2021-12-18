@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Select Routine{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <form action="/sessions/new/" method="post">
+          {% csrf_token %}
+          <p><div class="text-center"><label for="id_routine">Routine:</label></div>
+          <select class="form-select"  name="routine" required id="id_routine" aria-label="Select routine">
+            <option value="" selected="selected" >-------</option>
+            {% for routine in routines %}
+              <option value="{{routine.id}}">{{ routine.name }}</option>
+            {% endfor %}
+
+          </select></p>
+          <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
