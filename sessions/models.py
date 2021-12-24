@@ -31,16 +31,6 @@ class Exercise(CloneMixin, models.Model):
 
 
 
-""" class NotesForm(ModelForm):
-    class Meta:
-        model = Exercise
-        fields = ('notes')
-        widgets = {
-            'name': Textarea(attrs={'cols': 80, 'rows': 20}),
-        } """
-
-
-
 class Routine(models.Model):
     name = models.CharField(
         max_length=200,

@@ -45,7 +45,6 @@ body {
   
   .gold {
     font-weight: 900;
-  
     color: #f2c94c;
     text-shadow: 0 0 0px #fff, 0 0 50px #f2c94c;
   }
@@ -53,7 +52,6 @@ body {
   .controls {
     display: flex;
     justify-content: space-between;
-  
     width: 187px;
   }
   
@@ -73,3 +71,18 @@ body {
   #pauseButton {
     display: none;
   }
+  
+
+@media screen and (max-width: 400px) {
+  .stopwatch {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 0;
+    width: 100%;
+    padding-top: 15px;  
+  }
+
+  .time {
+    font-size: 38px;
+  }
+}

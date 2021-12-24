@@ -19,7 +19,11 @@
 
 <br>
 
-<a class="my_button left" href="{% url 'sessions:exercise_update' exercise.id %}">Update exercise</a>
+<a class="blue-button bottom-left" href="{% url 'sessions:exercise_update' exercise.id %}">
+    <i class="far fa-edit" title="Update"></i>
+    <span class="icon-text">Update exercise</span>
+</a>
 
+{% comment %} <script src="{% static 'sessions/js/exercise_detail.js' %}"></script> {% endcomment %}
 
 {% endblock content %}

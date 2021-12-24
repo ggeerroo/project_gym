@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
 
+
 {% endblock head %}
 
 {% block title %}Session{% endblock %}
@@ -55,7 +56,7 @@
         <button id="startButton">Start Session</button>
         <button id="finishButton" style="display:none">Finish Session</button>
         {% comment %} <a href="{% url 'sessions:session_delete' session.id %}">Cancel Session</a> {% endcomment %}
-        <a href="{% url 'sessions:session_delete' session.id %}" class="close" aria-label="Close">&#10006;</a>
+        <a href="{% url 'sessions:session_delete' session.id %}" class="cancel" aria-label="Cancel">&#10006;</a>
         
         <form method="post" action="{% url 'sessions:session_detail' session.id %}">
         {% csrf_token %}
@@ -67,7 +68,8 @@
       </div>
     </div>
     
-    <script src="{% static 'sessions/js/stopwatch.js' %}"></script>
+    <!-- Priority execution script -->
+    <script src="{% static 'sessions/js/session.js' %}"></script>
     {% comment %} This is just to redirect using the js {% endcomment %}
     <a id="href" style="display:none" href="/"></a>
     <p id="sessionID" style="display:none">{{ session.id }}</p>

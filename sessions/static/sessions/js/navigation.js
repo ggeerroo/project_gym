@@ -1,16 +1,3 @@
-/* Reference: https://www.w3schools.com/howto/howto_js_sidenav.asp */
-
-/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-  } 
-
-
 // If there's a session running
 function check_session() {
   // If we are in the Session page don't show Back to Session button
@@ -26,8 +13,11 @@ function check_session() {
   // If no Session active
   else
   {
-    // Show New-Session button
-    document.getElementById('new_session').style.display = 'block';
+    // Show New-Session button and Home button
+    if (document.getElementById("new_session") !== null) {
+      document.getElementById('new_session').style.display = 'block';
+    }
+    document.getElementById("home-button").style.display = "block";
   }
 } 
 

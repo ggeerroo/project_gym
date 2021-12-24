@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="d-lg-flex flex-column home-menu">
+    <div class="p-2 my_button my_nav" id="new_session"><a href="{% url 'sessions:session_create' %}">New session</a></div>
+    <div class="p-2 my_button my_nav"><a href="{% url 'sessions:routine_list' %}">Routines</a></div>
+    {% comment %} <div class="p-2 my_button my_nav"><a href="">Extra??</a></div> {% endcomment %}
+</div>
+
+{% else %}
+<div style="display:flex;">
+    <a class="my_button left" href="{% url 'login' %}">Log in</a>
+    <a class="my_button right" href="{% url 'welcome:signup' %}">Sign up</a>
+</div>
+{% endif %} 
+
+
+{% endblock content %} 
+
+
+

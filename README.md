@@ -4,6 +4,8 @@
 This project is an attempt to create a useful tool for people who go to the gym and want to keep track of their progress. 
 So far it only supports one specific routine: Push-Pull-Leg.
 
+### IMPORTANT NOTE: at this stage you can only use this app if you run it locally from your computer and it's for personal use, which means that all the accounts created using your server will share the same information (e.g: Routines and Exercise updates). 
+
 ## **What you can do with this app:** 
 - You can check the available Routines and their respective Exercises.
 - You can check when was the last time you did each Routine.

@@ -33,17 +33,17 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+     # MY APPS
+    'home',
+    'sessions',
+    'welcome',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # MY APPS
-    'home',
-    'sessions',
-    'welcome',
 ]
 
 MIDDLEWARE = [
@@ -107,8 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+""" LOGOUT_REDIRECT_URL = '/' """
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+# We should use the default when we have a /profile/ page ready 
+LOGIN_REDIRECT_URL = 'home' 
 
 
 # Internationalization
