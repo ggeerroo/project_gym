@@ -2,19 +2,24 @@
 {% block title %}Routines{% endblock %}
 
 {% block content %}
-<h1>Routines</h1>
 
 <div class="list-group">
+    <div class="list-group-item title"><h1>Routines</h1></div>
     {% for routine in object_list %}
             <a href="{% url 'sessions:routine_detail' routine.id  %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ routine.name }}</h5>
-                    <small>Last workout: {{ routine.last_workout|timesince }} ago </small>
+                    <small>{{ routine.last_workout|timesince }} ago </small>
                 </div>
             </a>
     {% empty %}
         No routines yet.
     {% endfor %}
 </div> 
+
+<a class="my_button bottom-left"  href="{% url 'home' %}">
+    <i class="fas fa-arrow-left" title="home"></i>
+    <span class="icon-text"> Back Home</span>
+</a>
 
 {% endblock content %}

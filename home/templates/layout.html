@@ -4,25 +4,35 @@
 {% block base_content %}
 
 {% load static %}
+{% block head %}{% endblock head %}
+{% if user.is_authenticated %}
+    <a id="logout" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt" title="Logout"></i>
+        <span class="icon-text">Log out</span>
+    </a>
+{% endif %}
 
-<a id="logout" href="{% url 'logout' %}">
-    <i class="fas fa-sign-out-alt" title="Logout"></i>
-    <span class="icon-text">Log out</span>
-</a>
 
-<a style="display: none;" id="home-button" href="{% url 'home' %}">
-    <i class="fas fa-home" title="Home"></i>
-</a>
 
-<a class="blue-button bottom-right" style="display:none;" id="back_to_session" href="">
+
+<a class="my_button bottom-left" style="display:none;" id="back_to_session" href="">
     <i class="fas fa-dumbbell" title="Session"></i>
     <span class="icon-text"> Back to Session</span>
 </a>
 
-<div>{% block content %}{% endblock content %}</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div>{% block content %}{% endblock content %}</div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- My JS -->
 <script src="{% static 'sessions/js/navigation.js' %}"></script>
+<script>{% block my_script %}{% endblock my_script %}</script>
 
 {% endblock base_content %} 
 

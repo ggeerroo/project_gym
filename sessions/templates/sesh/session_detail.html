@@ -16,21 +16,12 @@
 
 {% block content %}
 
-<div class="myheader">
-  <h1>Session {{ session_number }}</h1>
-</div>
-
-
-<div class="d-flex justify-content-between">
-   <h1 class="my_tooltip">
-        {{ session.routine.name }}
-        <span class="my_tooltiptext">Last workout: {{ session.routine.last_workout|timesince }} ago </span>
-    </h1>
-    <small>{{ session.date }}</small> 
-</div> 
-
-
 <div class="list-group">
+    <div class="list-group-item title">
+        <h1 class="my_tooltip nopadding-h1">Session {{ session_number }}:    {{ session.routine.name }}
+            <span class="my_tooltiptext">{{ session.date }}</span>
+        </h1>      
+    </div>
     {% for exercise in session.routine.exercises.all  %}
             <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
@@ -43,7 +34,6 @@
 </div> 
 
 
-
 {% if session.duration %}
     <p>Duration: {{ session.duration }}</p>
 {% else %}
@@ -53,8 +43,8 @@
 
       <div class="d-flex justify-content-between">
         
-        <button id="startButton">Start Session</button>
-        <button id="finishButton" style="display:none">Finish Session</button>
+        <button class="my_button" id="startButton">Start Session</button>
+        <button class="my_button" id="finishButton" style="display:none">Finish Session</button>
         {% comment %} <a href="{% url 'sessions:session_delete' session.id %}">Cancel Session</a> {% endcomment %}
         <a href="{% url 'sessions:session_delete' session.id %}" class="cancel" aria-label="Cancel">&#10006;</a>
         
@@ -62,9 +52,7 @@
         {% csrf_token %}
             <input type="hidden" id="duration" name="duration" value="">
             <input type="submit" id="sendForm" value="sendForm" style="display:none">
-        </form>
-
-        
+        </form>    
       </div>
     </div>
     

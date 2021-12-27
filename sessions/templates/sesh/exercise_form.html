@@ -1,12 +1,22 @@
 {% extends "layout.html" %}
 {% block title %}Exercise{% endblock %}
 
+{% block head %}
+<style>textarea {height: 100px;}</style> {% comment %} To control the size of the textarea in the form {% endcomment %}
+{% endblock head %}
+
+<!-- Reference: https://simpleisbetterthancomplex.com/tutorial/2018/08/13/how-to-use-bootstrap-4-forms-with-django.html -->
+{% load crispy_forms_tags %}
 {% block content %}
 
-<form action="{% url 'sessions:exercise_update' exercise.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+            <form action="{% url 'sessions:exercise_update' exercise.id %}" method="post">
+                <div class="form-group">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="my_button bottom-right" type="submit" value="Update">
+                </div>
+            </form>
+
+<a class="my_button bottom-left"  href="{% url 'sessions:routine_list' %}">Cancel</a>
 
 {% endblock content %}

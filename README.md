@@ -1,4 +1,4 @@
-# YOUR PROJECT TITLE
+# SESSIONS
 #### Video Demo:  <URL HERE>
 #### Description:
 This project is an attempt to create a useful tool for people who go to the gym and want to keep track of their progress. 

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'home',
     'sessions',
     'welcome',
+    'crispy_forms',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,3 +137,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For use with crispy forms
+# Reference: https://simpleisbetterthancomplex.com/tutorial/2018/08/13/how-to-use-bootstrap-4-forms-with-django.html
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

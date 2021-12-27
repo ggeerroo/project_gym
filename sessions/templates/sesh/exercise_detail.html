@@ -1,29 +1,31 @@
 {% extends "layout.html" %}
 {% block title %}Exercise{% endblock %}
-
+{% load static%}
 {% block content %}
 
-{% load static%}
+<ul class="list-group">
+    <div class="list-group-item title"><h1>{{ exercise.name }}</h1></div>
+    <li class="list-group-item list-group-item-action flex-column align-items-start">Sets: {{ exercise.sets }}</li>
+    <li class="list-group-item list-group-item-action flex-column align-items-start">Reps: {{ exercise.repetitions }}</li>
+    <li class="list-group-item list-group-item-action flex-column align-items-start">Weight: {{ exercise.weight }} kg</li>
+</ul>
+<p>Notes: {{ exercise.notes }}</p>
 
-<ul><h1>{{ exercise.name }}</h1></ul>
-<div>
-    <ul>
-        <li>Sets: {{ exercise.sets }}</li>
-        <li>Reps: {{ exercise.repetitions }}</li>
-        <li>Weight: {{ exercise.weight }} kg</li>
-    </ul>
-    <p>Notes: {{ exercise.notes }}</p>
-</div>
+<h6>Updated {{ exercise.updated_at|timesince }} ago</h6>
 
-<h6>Last update: {{ exercise.updated_at|timesince }} ago</h6>
-
-<br>
-
-<a class="blue-button bottom-left" href="{% url 'sessions:exercise_update' exercise.id %}">
+<a class="my_button bottom-right" href="{% url 'sessions:exercise_update' exercise.id %}">
     <i class="far fa-edit" title="Update"></i>
     <span class="icon-text">Update exercise</span>
 </a>
 
-{% comment %} <script src="{% static 'sessions/js/exercise_detail.js' %}"></script> {% endcomment %}
-
+<a class="my_button bottom-left"  id="back_exercise_list" href="{% url 'sessions:routine_list' %}">
+    <i class="fas fa-arrow-left" title="home"></i>
+    <span class="icon-text">Routines</span>
+</a>
 {% endblock content %}
+
+{% block my_script %}
+if (localStorage.getItem('current_session')) {
+    document.getElementById("back_exercise_list").style.display = "none";
+  }
+{% endblock my_script %}

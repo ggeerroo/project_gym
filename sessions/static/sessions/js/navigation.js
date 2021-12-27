@@ -17,7 +17,9 @@ function check_session() {
     if (document.getElementById("new_session") !== null) {
       document.getElementById('new_session').style.display = 'block';
     }
-    document.getElementById("home-button").style.display = "block";
+    if (document.getElementById("home-button") !== null) {
+      document.getElementById('home-button').style.display = 'block';
+    }
   }
 } 
 

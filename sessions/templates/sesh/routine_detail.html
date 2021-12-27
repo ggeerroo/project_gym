@@ -3,13 +3,12 @@
 
 {% block content %}
 
-<h1>{{ routine.name }}</h1>
 <div class="list-group">
+    <div class="list-group-item title"><h1>{{ routine.name }}</h1></div>
     {% for exercise in routine.exercises.all  %}
             <a href="{% url 'sessions:exercise_detail' exercise.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ exercise.name }}</h5>
-                    {% comment %} <small>Last update: {{ exercise.updated_at|timesince }}</small> {% endcomment %}
                 </div>
             </a>
     {% empty %}
@@ -17,10 +16,9 @@
     {% endfor %}
 </div> 
 
-created at: {{ routine.created_at|date }}
-<br>
-last update: {{ routine.updated_at|date }}
-
-
+<a class="my_button bottom-left"  href="{% url 'sessions:routine_list' %}">
+    <i class="fas fa-arrow-left" title="routines"></i>
+    <span class="icon-text">Routines</span>
+</a>
 
 {% endblock content %}

@@ -85,7 +85,7 @@ class ExerciseDetail(LoginRequiredMixin,DetailView):
 
 class ExerciseUpdate(LoginRequiredMixin, UpdateView):
     model = Exercise
-    fields = ['sets', 'repetitions', 'weight']
+    fields = ['sets', 'repetitions', 'weight', 'notes']
 
     #   Create a clone of the exercise so we can keep a record of the progress
     def form_valid(self, form):

@@ -1,19 +1,29 @@
 {% extends "layout.html" %}
 {% block title %}Home Page{% endblock %}
-
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet"> 
+{% endblock head %}
 {% block content %}
+
+
+<div>
+    <p class="text-muted">Welcome to</p>
+    <p class="display-1">SESSIONS</p>
+</div>
 
 {% if user.is_authenticated %}
 <div class="d-lg-flex flex-column home-menu">
-    <div class="p-2 my_button my_nav" id="new_session"><a href="{% url 'sessions:session_create' %}">New session</a></div>
-    <div class="p-2 my_button my_nav"><a href="{% url 'sessions:routine_list' %}">Routines</a></div>
+    <a class="p-2 my_button my_nav" id="new_session" href="{% url 'sessions:session_create' %}">New session</a>
+    <a class="p-2 my_button my_nav" href="{% url 'sessions:routine_list' %}">Routines</a>
     {% comment %} <div class="p-2 my_button my_nav"><a href="">Extra??</a></div> {% endcomment %}
 </div>
 
 {% else %}
 <div style="display:flex;">
-    <a class="my_button left" href="{% url 'login' %}">Log in</a>
-    <a class="my_button right" href="{% url 'welcome:signup' %}">Sign up</a>
+    <a class="my_button bottom-left" href="{% url 'login' %}">Log in</a>
+    <a class="my_button bottom-right" href="{% url 'welcome:signup' %}">Sign up</a>
 </div>
 {% endif %} 
 
