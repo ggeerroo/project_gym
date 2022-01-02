@@ -32,7 +32,8 @@
 
 <!-- My JS -->
 <script src="{% static 'sessions/js/navigation.js' %}"></script>
-<script>{% block my_script %}{% endblock my_script %}</script>
+{% comment %} <script>{% block my_script %}{% endblock my_script %}</script> {% endcomment %}
+{% block my_script %}{% endblock my_script %}
 
 {% endblock base_content %} 
 
