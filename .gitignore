@@ -1,3 +1,5 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+# Ignore luxon files from chart.js
+node_modules/
+
+# Ignore __pycache__ files
+__pycache__

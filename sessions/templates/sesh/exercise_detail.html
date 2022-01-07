@@ -25,7 +25,9 @@
 {% endblock content %}
 
 {% block my_script %}
-if (localStorage.getItem('current_session')) {
-    document.getElementById("back_exercise_list").style.display = "none";
-  }
+<script>
+    if (localStorage.getItem('current_session')) {
+        document.getElementById("back_exercise_list").style.display = "none";
+    }
+</script>
 {% endblock my_script %}

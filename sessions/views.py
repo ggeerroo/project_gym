@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_list_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic.base import TemplateView
 from sessions.models import Routine, Exercise, Session
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -11,7 +12,6 @@ from datetime import timedelta, datetime
 class SessionCreate(LoginRequiredMixin, CreateView):
     model = Session
     fields = ['routine']
-    """ template = 'sesh/routine_select.html' """
     template_name_suffix = '_create_form'
 
     def get_context_data(self, **kwargs):
@@ -34,7 +34,6 @@ class SessionCreate(LoginRequiredMixin, CreateView):
 
 class SessionDetail(LoginRequiredMixin, DetailView):
     model = Session
-
 
     # We get the session's number, because it's not necessarily the same as its id (cancelled sessions, etc.)
     def get_context_data(self, **kwargs):
@@ -103,24 +102,33 @@ class ExerciseUpdate(LoginRequiredMixin, UpdateView):
         exercise_clone = exercise.make_clone()
         exercise_clone.updated_at = datetime.now()
         exercise_clone.save()
-        return super().form_valid(form)  """
+        return super().form_valid(form) 
 
 """ 
-class RoutineCreate(CreateView):
-    #todo
 
 
+# Show a chart with the progress of the wanted exercise through time
+class ExerciseChart(LoginRequiredMixin, TemplateView):
+    template_name='sesh/progress_charts.html'   
+      
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get all instances of the exercise
+        exercises = get_list_or_404(Exercise, name=self.kwargs['exercise_name'])
+        # Get sets, reps, weight and date of each instance
+        sets = []
+        reps = []
+        weights = []
+        dates = []
+        for exercise in exercises:
+            sets.append(exercise.sets)
+            reps.append(exercise.repetitions) 
+            weights.append(exercise.weight)
+            dates.append(exercise.updated_at)
+        context['sets'] = sets
+        context['reps'] =  reps
+        context['weights'] = weights
+        context['dates'] = dates
+        return context
 
 
-
-
-
-class RoutineDelete(DeleteView):
-    #todo
-
-
-
-
-
-
- """

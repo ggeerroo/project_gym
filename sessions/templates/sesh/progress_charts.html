@@ -4,6 +4,9 @@
 
 {% block head %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
 {% endblock head %}
 
 {% block content %}
@@ -11,5 +14,133 @@
 {% endblock content %}
 
 {% block my_script %}
-    <script src="{% static 'sessions/js/progress_charts.js' %}"></script>
+<script>
+/* Reference for Multiaxis Linear Scales: */
+/* https://www.chartjs.org/docs/3.5.1/samples/scales/linear-min-max-suggested.html#linear-scale-suggested-min-max */
+/* https://stackoverflow.com/questions/38085352/how-to-use-two-y-axes-in-chart-js-v2 */
+// --->   https://www.chartjs.org/docs/3.5.1/axes/cartesian/#axis-id
+
+
+
+const MAX_SETS = 20;
+const MAX_REPS = 50;
+const MAX_WEIGHTS = 500;
+var RED = 'rgba(255, 55, 0, 0.44)';
+var BLUE = 'rgba(3, 153, 255, 0.29)';
+var GREEN = 'rgba(0, 255, 61, 0.44)';
+
+
+var canvas = document.getElementById('myChart');
+new Chart(canvas, {
+    type: 'line',
+    data: { 
+        labels: [{% for date in dates %}'{{ date.isoformat }}',{% endfor %}],
+        datasets: [{
+            label: 'sets',
+            yAxisID: 'sets',
+            data: [{% for set in sets %}{{ set }},{% endfor %}],
+            borderColor: RED,
+            //backgroundColor: transparentize(RED, 0.5),
+            fill: true,
+            tension: 0.4
+        }, {
+            label: 'reps',
+            yAxisID: 'reps',
+            data: [{% for rep in reps %}{{ rep }},{% endfor %}],
+            borderColor: BLUE,
+            //backgroundColor: transparentize(BLUE, 0.5),
+            fill: true,
+            tension: 0.4
+        }, {
+            label: 'weights',
+            yAxisID: 'weights',
+            data: [{% for weight in weights %}{{ weight }},{% endfor %}],
+            borderColor: GREEN,
+            //backgroundColor: transparentize(BLUE, 0.5),
+            fill: true,
+            tension: 0.4
+        }]
+        
+    },
+    options: {
+        scales: {
+            'sets': {
+                type: 'linear',
+                position: 'right',
+                ticks: {
+                    max: MAX_SETS,
+                    min: 1,
+                }
+            },
+            'reps': {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                ticks: {
+                    max: MAX_REPS,
+                    min: 1,
+                }
+            },
+            'weights': {
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    max: MAX_WEIGHTS,
+                    min: 0,
+                }
+            },
+            x: {
+                type: 'time',
+                parser: 'MM-DD',
+                unit: 'day',
+                displayFormats: {
+                    'day': 'MM-DD'
+                }
+            },
+            // grid line settings
+            grid: {
+                drawOnChartArea: false, // only want the grid lines for one axis to show up
+            }
+        }   
+    }
+});
+</script>
+
 {% endblock my_script %}
+
+{% comment %}   
+
+
+
+
+
+
+
+
+
+
+            sets: {
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    max: MAX_SETS,
+                    min: 1,
+                }
+            },
+            reps: {
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    max: MAX_REPS,
+                    min: 1,
+                }
+            },
+            weights: {
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    max: MAX_WEIGHTS,
+                    min: 0,
+                }
+            } 
+            {% endcomment %}
